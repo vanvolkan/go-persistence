@@ -36,7 +36,7 @@ func (env *Env) booksIndex(w http.ResponseWriter, r *http.Request) {
 	}
 	bks, err := env.db.AllBooks()
 	if err != nil {
-		http.Error(w, "blah"+http.StatusText(500), 500)
+		http.Error(w, err.Error(), 500)
 		return
 	}
 
