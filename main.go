@@ -1,10 +1,11 @@
 package main
 
 import (
-	"bookstore/models"
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/IvolksI/go-persistence/models"
 )
 
 type Env struct {
@@ -12,7 +13,12 @@ type Env struct {
 }
 
 func main() {
-	db, err := models.NewDB("postgres://postgress:pass@localhost/bookstore")
+	// psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+	// 	"password=%s dbname=%s sslmode=disable",
+	// 	host, port, user, password, dbname)
+
+	connStr := "postgres://volkan:Volkan21!@localhost:5433/bookstore?sslmode=disable"
+	db, err := models.NewDB(connStr) //("postgres://postgress:pass@localhost/bookstore")
 	if err != nil {
 		log.Panic(err)
 	}
@@ -30,7 +36,7 @@ func (env *Env) booksIndex(w http.ResponseWriter, r *http.Request) {
 	}
 	bks, err := env.db.AllBooks()
 	if err != nil {
-		http.Error(w, http.StatusText(500), 500)
+		http.Error(w, "blah"+http.StatusText(500), 500)
 		return
 	}
 
