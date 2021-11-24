@@ -17,7 +17,7 @@ func main() {
 	// 	"password=%s dbname=%s sslmode=disable",
 	// 	host, port, user, password, dbname)
 
-	connStr := "postgres://volkan:Volkan21!@localhost:5433/bookstore?sslmode=disable"
+	connStr := "postgres://volkan@localhost:5433/bookstore?sslmode=disable"
 	db, err := models.NewDB(connStr) //("postgres://postgress:pass@localhost/bookstore")
 	if err != nil {
 		log.Panic(err)
